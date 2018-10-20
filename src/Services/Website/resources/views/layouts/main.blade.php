@@ -31,9 +31,6 @@
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
 
-<!-- App Js -->
-<script src="{{ asset('assets/website/js/app.js') }}"></script>
-
 <script>
     var _csrf = '{{ csrf_token() }}';
 </script>

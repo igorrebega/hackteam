@@ -34,7 +34,7 @@ class ProductController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function view(int $id)
+    public function view($id)
     {
         return $this->serve(ViewProductFeature::class, [
             'productId' => $id

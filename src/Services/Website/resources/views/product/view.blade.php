@@ -47,7 +47,6 @@
         window.productId = 1;
     </script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js" type="text/javascript"></script>
     <script src="/js/site.js" type="text/javascript"></script>
 
 @endsection
