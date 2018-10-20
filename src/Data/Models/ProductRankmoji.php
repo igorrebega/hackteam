@@ -8,6 +8,8 @@ namespace App\Data\Models;
  */
 class ProductRankmoji extends Model
 {
+
+    public $timestamps = false;
     const EMOJEES = [
         'angry' => 1,
         'sad' => 2,
@@ -31,15 +33,7 @@ class ProductRankmoji extends Model
      *
      * @var array
      */
-    protected $fillable = [
-        'angry',
-        'sad',
-        'neutral',
-        'happy',
-        'surprised',
-        'overall_emoji',
-        'overall_rank',
-    ];
+    protected $guarded = [];
 
     /**
      * @param string $key

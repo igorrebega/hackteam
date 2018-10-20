@@ -2,6 +2,9 @@
 
 namespace App\Services\Website\Features\Product;
 
+use App\Domains\Ranking\Jobs\CreateRankmojiJob;
+use App\Domains\Ranking\Jobs\GetRankingJob;
+use App\Domains\Http\Jobs\RespondWithJsonJob;
 use App\Domains\Profile\Admin\Jobs\AnalisePhotoJob;
 use App\Domains\Profile\Admin\Jobs\SaveWebcamPhotoJob;
 use Lucid\Foundation\Feature;
@@ -24,17 +27,26 @@ class AnalisePhotoFeature extends Feature
 
     public function handle()
     {
-        $image = $this->dispatchNow(new SaveWebcamPhotoJob(
+        $image = $this->run(new SaveWebcamPhotoJob(
             \request('imgBase64')
         ));
 
-        $emotionData = $this->dispatchNow(new AnalisePhotoJob(
+        $emotionData = $this->run(new AnalisePhotoJob(
             $this->productId,
             $image
         ));
 
+        $this->run(new CreateRankmojiJob(
+            $this->productId,
+            $emotionData['anger'],
+            $emotionData['sadness'],
+            $emotionData['neutral'],
+            $emotionData['happiness'],
+            $emotionData['surprise']
+        ));
 
+        $newData = $this->run(new GetRankingJob($this->productId));
 
-        return $emotionData;
+        return $this->run(new RespondWithJsonJob($newData));
     }
 }

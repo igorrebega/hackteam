@@ -1,11 +1,11 @@
 <?php
-namespace App\Data\Domains\Ranking\Jobs;
+namespace App\Domains\Ranking\Jobs;
 
 use App\Data\Repositories\ProductRankmojiRepository;
 use App\Data\Repositories\ProductRepository;
 use Lucid\Foundation\Job;
 
-class CreateRankingJob extends Job
+class CreateRankmojiJob extends Job
 {
     /**
      * @var int

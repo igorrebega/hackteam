@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Data\Domains\Ranking\Jobs;
+namespace App\Domains\Ranking\Jobs;
 
+use App\Data\Models\ProductRankmoji;
 use App\Data\Repositories\ProductRankmojiRepository;
 use Lucid\Foundation\Job;
 
-class CreateRankingJob extends Job
+class GetRankingJob extends Job
 {
     /**
      * @var int
@@ -25,6 +26,24 @@ class CreateRankingJob extends Job
      */
     public function handle(ProductRankmojiRepository $productRankmojiRepository)
     {
-        return $productRankmojiRepository->getOveralCountByProduct($this->productId)->toArray();
+        $numbersToIndexes = array_flip(ProductRankmoji::EMOJEES);
+
+        $overal = $productRankmojiRepository->getOveralCountByProduct($this->productId);
+
+        $total = [
+            'angry'     => 0,
+            'sad'       => 0,
+            'neutral'   => 0,
+            'happy'     => 0,
+            'surprised' => 0,
+        ];
+
+        foreach ($overal as $value) {
+            $indexName = $numbersToIndexes[$value->overall_emoji];
+
+            $total[$indexName] = $value['count'];
+        }
+
+        return $total;
     }
 }
