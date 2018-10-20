@@ -46,7 +46,7 @@ class SaveWebcamPhotoJob extends Job
                 throw new \RuntimeException('base64_decode failed');
             }
 
-            return '/cam/' . $name;
+            return 'cam/' . $name;
         }
 
         throw new \RuntimeException('did not match data URI with image data');
