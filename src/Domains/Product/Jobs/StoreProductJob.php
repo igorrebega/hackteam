@@ -2,6 +2,7 @@
 
 namespace App\Domains\Product\Jobs;
 
+use App\Data\Models\Product;
 use App\Data\Repositories\ProductRepository;
 use App\Services\Dashboard\Http\Requests\Product\StoreProductRequest;
 use Lucid\Foundation\Job;
@@ -28,14 +29,31 @@ class StoreProductJob extends Job
     }
 
     /**
-     * Execute the job.
      * @param ProductRepository $productRepository
-     * @return mixed
+     * @return Product|bool
      */
     public function handle(ProductRepository $productRepository)
     {
         $attributes = $this->request->only(['title', 'description', 'price']);
 
-        return $productRepository->fillAndSave($attributes);
+        \DB::beginTransaction();
+
+        try {
+
+            /** @var Product $product */
+            $product = $productRepository->fillAndSave($attributes);
+
+            $product->addMediaFromRequest('image')->toMediaCollection(Product::MEDIA_COLLECTION_IMAGES);
+
+            \DB::commit();
+
+            return $product;
+
+        } catch (\Exception $e) {
+
+            \DB::rollBack();
+            return false;
+
+        }
     }
 }

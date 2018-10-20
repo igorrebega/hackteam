@@ -11,12 +11,15 @@
 |
 */
 
-Route::group(['prefix' => 'website'], function() {
+Route::group(['prefix' => '/'], function () {
 
     // The controllers live in src/Services/Website/Http/Controllers
     // Route::get('/', 'UserController@index');
 
-    Route::get('/', function() {
+    Route::get('/media/{relativePath}', 'MediaController@getMedia')
+        ->where('relativePath', '(.*)');
+
+    Route::get('/', function () {
         return view('website::welcome');
     });
 

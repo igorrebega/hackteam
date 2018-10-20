@@ -24,10 +24,13 @@ class UpdateProductRequest extends FormRequest
      */
     public function rules()
     {
+        $maxFileSize = env('MAX_UPLOADING_FILE_SIZE');
+
         return [
             'title'       => 'required|string|max:255',
             'description' => 'required|string',
             'price'       => 'required|numeric|between:0,999999999.99',
+            'image'       => "nullable|image|mimes:jpeg,png|max:{$maxFileSize}"
         ];
     }
 

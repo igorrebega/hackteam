@@ -13,7 +13,7 @@
                         </h2>
                     </div>
                     <div class="body">
-                        {!! Form::model($item, ['url' => route('products.update', ['id' => $item->id]), 'method' => 'put']) !!}
+                        {!! Form::model($item, ['url' => route('products.update', ['id' => $item->id]), 'method' => 'put', 'enctype' => 'multipart/form-data']) !!}
 
                         @include('dashboard::product._form')
 

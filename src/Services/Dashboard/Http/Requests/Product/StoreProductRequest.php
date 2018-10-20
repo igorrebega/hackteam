@@ -24,10 +24,13 @@ class StoreProductRequest extends FormRequest
      */
     public function rules()
     {
+        $maxFileSize = env('MAX_UPLOADING_FILE_SIZE');
+
         return [
             'title'       => 'required|string|max:255',
             'description' => 'required|string',
             'price'       => 'required|numeric|between:0,999999999.99',
+            'image'       => "required|image|mimes:jpeg,png|max:{$maxFileSize}"
         ];
     }
 
@@ -40,6 +43,7 @@ class StoreProductRequest extends FormRequest
             'title'       => 'Title',
             'description' => 'Description',
             'price'       => 'Price',
+            'image'       => 'Image',
         ];
     }
 }

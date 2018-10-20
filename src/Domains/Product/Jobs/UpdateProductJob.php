@@ -2,6 +2,7 @@
 
 namespace App\Domains\Product\Jobs;
 
+use App\Data\Models\Product;
 use App\Data\Repositories\ProductRepository;
 use App\Services\Dashboard\Http\Requests\Product\UpdateProductRequest;
 use Lucid\Foundation\Job;
@@ -36,12 +37,34 @@ class UpdateProductJob extends Job
 
     /**
      * @param ProductRepository $productRepository
-     * @return \Illuminate\Database\Eloquent\Model
+     * @return Product|bool
      */
     public function handle(ProductRepository $productRepository)
     {
         $attributes = $this->request->only(['title', 'description', 'price']);
 
-        return $productRepository->update($this->productId, $attributes);
+        \DB::beginTransaction();
+
+        try {
+
+            /** @var Product $product */
+            $product = $productRepository->update($this->productId, $attributes);
+
+            if ($product->hasMedia(Product::MEDIA_COLLECTION_IMAGES)) {
+                $product->getFirstMedia(Product::MEDIA_COLLECTION_IMAGES)->delete();
+            }
+            $product->addMediaFromRequest('image')->toMediaCollection(Product::MEDIA_COLLECTION_IMAGES);
+
+            \DB::commit();
+
+            return $product;
+
+        } catch (\Exception $e) {
+
+            \DB::rollBack();
+            return false;
+
+        }
+
     }
 }
