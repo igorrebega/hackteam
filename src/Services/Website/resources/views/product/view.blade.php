@@ -9,7 +9,8 @@
             <div class="col-md-12">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item active" aria-current="page">A certain product</li>
+                        <li class="breadcrumb-item active" aria-current="page"><a
+                                    href="{{ route('website.products') }}">All products</a> / {{ $product->title }}</li>
                     </ol>
                 </nav>
             </div>
