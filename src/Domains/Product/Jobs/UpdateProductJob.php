@@ -50,10 +50,10 @@ class UpdateProductJob extends Job
             /** @var Product $product */
             $product = $productRepository->update($this->productId, $attributes);
 
-            if ($product->hasMedia(Product::MEDIA_COLLECTION_IMAGES)) {
+            if ($this->request->hasFile('image') && $product->hasMedia(Product::MEDIA_COLLECTION_IMAGES)) {
                 $product->getFirstMedia(Product::MEDIA_COLLECTION_IMAGES)->delete();
+                $product->addMediaFromRequest('image')->toMediaCollection(Product::MEDIA_COLLECTION_IMAGES);
             }
-            $product->addMediaFromRequest('image')->toMediaCollection(Product::MEDIA_COLLECTION_IMAGES);
 
             \DB::commit();
 
