@@ -10,8 +10,8 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-Route::get('/', 'ProductController@index')->name('products');
-Route::post('/product/vote/{id}', 'ProductController@vote');
-Route::get('/product/{id}', 'ProductController@view')->name('products.view');
+Route::get('/', 'ProductController@index')->name('website.products');
+Route::post('/product/vote/{id}', 'ProductController@vote')->name('website.products.vote');
+Route::get('/product/{id}', 'ProductController@view')->name('website.products.view');
 
 Route::get('/media/{relativePath}', 'MediaController@getMedia')->where('relativePath', '(.*)');

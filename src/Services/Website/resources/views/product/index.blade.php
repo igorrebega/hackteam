@@ -31,21 +31,21 @@
 
                     <div class="col-md-4">
                         <div class="card">
-                            <a href="{{ route('products.view', ['id' => $product->id]) }}">
+                            <a href="{{ route('website.products.view', ['id' => $product->id]) }}">
                                 <img class="card-img-top" src="{{ $product->getImageUrl() }}"
                                      alt="{{ $product->title }}">
                             </a>
 
                             <div class="card-body">
                                 <h5 class="card-title">
-                                    <a class="link" href="{{ route('products.view', ['id' => $product->id]) }}">
+                                    <a class="link" href="{{ route('website.products.view', ['id' => $product->id]) }}">
                                         {{ $product->title }}
                                     </a>
                                 </h5>
                                 <p class="card-text"> {{ \Illuminate\Support\Str::words($product->description, 20) }}</p>
                             </div>
                             <div class="card-footer">
-                                <small class="text-muted">Some text</small>
+                                <small class="text-muted">Price: ${{ $product->price }}</small>
                             </div>
                         </div>
                     </div>
