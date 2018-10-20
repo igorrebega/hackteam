@@ -14,7 +14,7 @@ class AdminRepository extends Repository
     /**
      * @return string
      */
-    function model()
+    protected function model()
     {
         return Admin::class;
     }
