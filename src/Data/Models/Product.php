@@ -7,7 +7,6 @@ use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 
 /**
  * Class Product
- * @package App\Data\Models
  * @author Yosyp Mykhailiv <y.mykhailiv@bvblogic.com>
  */
 class Product extends Model implements HasMedia

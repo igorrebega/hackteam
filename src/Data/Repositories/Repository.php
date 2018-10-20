@@ -19,7 +19,7 @@ abstract class Repository
     /**
      * @return mixed
      */
-    abstract function model();
+    abstract protected function model();
 
     /**
      * Repository constructor.

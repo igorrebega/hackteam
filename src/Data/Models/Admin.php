@@ -7,7 +7,6 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 /**
  * Class Admin
- * @package App\Data\Models
  * @author Yosyp Mykhailiv <y.mykhailiv@bvblogic.com>
  */
 class Admin extends Authenticatable
