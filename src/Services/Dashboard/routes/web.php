@@ -43,6 +43,17 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['web']], function () {
         });
 
         Route::post('/logout', 'AuthController@logout')->name('auth.logout');
+
+        Route::group(['prefix' => 'product'], function () {
+
+            Route::get('/', 'ProductController@index')->name('products');
+            Route::get('/create', 'ProductController@create')->name('products.create');
+            Route::get('/edit/{id}', 'ProductController@edit')->name('products.edit');
+            Route::post('/store', 'ProductController@store')->name('products.store');
+            Route::put('/update/{id}', 'ProductController@update')->name('products.update');
+            Route::delete('/delete/{id}', 'ProductController@delete')->name('products.delete');
+
+        });
     });
 
     /**
