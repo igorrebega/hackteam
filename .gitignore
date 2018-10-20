@@ -1,0 +1,10 @@
+/vendor
+/node_modules
+Homestead.yaml
+Homestead.json
+.env
+/.idea
+/public/assets/
+/public/mix-manifest.json
+_ide_helper.php
+_ide_helper_models.php
