@@ -132,7 +132,7 @@
                 </li>
                 <li class="{{$menuActive === 'products' ? 'active' : ''}}">
                     <a href="javascript:void(0);" class="menu-toggle waves-effect waves-block">
-                        <i class="material-icons">group</i>
+                        <i class="material-icons">shopping_cart</i>
                         <span>Products</span>
                     </a>
                     <ul class="ml-menu">

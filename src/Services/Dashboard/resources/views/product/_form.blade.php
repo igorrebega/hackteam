@@ -34,18 +34,44 @@
 
 </div>
 
-{!! Form::label('description', 'Description') !!}
-<div class="form-group">
-    <div class="form-line {!! $errors->get('description') ? 'error' : '' !!}">
-        {!! Form::textarea('description', null, ['id' => 'description','class' => 'form-control', 'placeholder' => 'Enter the description']) !!}
+<div class="row cleafix">
+
+    <div class="col-md-12">
+        {!! Form::label('description', 'Description') !!}
+        <div class="form-group">
+            <div class="form-line {!! $errors->get('description') ? 'error' : '' !!}">
+                {!! Form::textarea('description', null, ['id' => 'description', 'rows' => '7','class' => 'form-control', 'placeholder' => 'Enter the description']) !!}
+            </div>
+            @if($errors->get('description'))
+                <label class="error">
+                    @foreach($errors->get('description') as $error)
+                        {!! $error !!}
+                    @endforeach
+                </label>
+            @endif
+        </div>
     </div>
-    @if($errors->get('description'))
-        <label class="error">
-            @foreach($errors->get('description') as $error)
-                {!! $error !!}
-            @endforeach
-        </label>
-    @endif
+
+    <div class="col-md-6">
+        {!! Form::label('image', 'Image') !!}
+        <div class="form-group">
+            <div class="form-line {!! $errors->get('image') ? 'error' : '' !!}">
+                {!! Form::file('image', ['id' => 'image','class' => 'form-control', 'placeholder' => 'Choose an image']) !!}
+            </div>
+            @if($errors->get('image'))
+                <label class="error">
+                    @foreach($errors->get('image') as $error)
+                        {!! $error !!}
+                    @endforeach
+                </label>
+            @endif
+        </div>
+
+        @if($item->exists())
+        <img style="max-width: 100%;" src="{{ $item->getImageUrl() }}">
+        @endif
+    </div>
+
 </div>
 
 {!! Form::submit($item->exists ? 'UPDATE' : 'CREATE', ['class' => 'btn btn-primary m-t-15 waves-effect']) !!}
