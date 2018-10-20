@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Foundation;
 
 use Illuminate\Routing\Router;
@@ -10,5 +11,6 @@ class ServiceProvider extends BaseServiceProvider
     {
         // Register the service providers of your Services here.
         $this->app->register('App\Services\Dashboard\Providers\DashboardServiceProvider');
+        $this->app->register('App\Services\Website\Providers\WebsiteServiceProvider');
     }
 }
