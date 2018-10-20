@@ -53,8 +53,12 @@ class AnalisePhotoJob extends Job
             ]
         ]);
 
-        $response = $res->getBody()->getContents();
+        $response = json_decode($res->getBody()->getContents());
 
-        return json_decode($response, true)[0]['faceAttributes']['emotion'];
+        if (! isset($response[0])) {
+            return false;
+        }
+
+        return $response[0]['faceAttributes']['emotion'];
     }
 }

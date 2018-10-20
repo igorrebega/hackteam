@@ -2,11 +2,11 @@
 
 namespace App\Services\Website\Features\Product;
 
-use App\Domains\Ranking\Jobs\CreateRankmojiJob;
-use App\Domains\Ranking\Jobs\GetRankingJob;
 use App\Domains\Http\Jobs\RespondWithJsonJob;
 use App\Domains\Profile\Admin\Jobs\AnalisePhotoJob;
 use App\Domains\Profile\Admin\Jobs\SaveWebcamPhotoJob;
+use App\Domains\Ranking\Jobs\CreateRankmojiJob;
+use App\Domains\Ranking\Jobs\GetRankingJob;
 use Lucid\Foundation\Feature;
 
 class AnalisePhotoFeature extends Feature
@@ -35,6 +35,10 @@ class AnalisePhotoFeature extends Feature
             $this->productId,
             $image
         ));
+
+        if (! $emotionData) {
+            new RespondWithJsonJob(['status' => false]);
+        }
 
         $this->run(new CreateRankmojiJob(
             $this->productId,
