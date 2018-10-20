@@ -40,14 +40,13 @@ class SaveWebcamPhotoJob extends Job
             $name = time() . \random_int(1, 100) . '.png';
 
 
-            $path = '/cam/' . $name;
-            \Storage::put($path, $data);
+            \Storage::disk('cam')->put($name, $data);
 
             if ($data === false) {
                 throw new \RuntimeException('base64_decode failed');
             }
 
-            return $path;
+            return '/cam/' . $name;
         }
 
         throw new \RuntimeException('did not match data URI with image data');
