@@ -130,6 +130,19 @@
                         </li>
                     </ul>
                 </li>
+                <li class="{{$menuActive === 'products' ? 'active' : ''}}">
+                    <a href="javascript:void(0);" class="menu-toggle waves-effect waves-block">
+                        <i class="material-icons">group</i>
+                        <span>Products</span>
+                    </a>
+                    <ul class="ml-menu">
+                        <li><a href="{{route('products')}}" class="toggled waves-effect waves-block">All products</a>
+                        </li>
+                        <li><a href="{{route('products.create')}}" class="toggled waves-effect waves-block">Create
+                                new</a>
+                        </li>
+                    </ul>
+                </li>
             </ul>
         </div>
         <!-- #Menu -->
