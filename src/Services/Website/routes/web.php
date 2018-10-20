@@ -19,8 +19,7 @@ Route::group(['prefix' => '/'], function () {
     Route::get('/media/{relativePath}', 'MediaController@getMedia')
         ->where('relativePath', '(.*)');
 
-    Route::get('/', function () {
-        return view('website::welcome');
-    });
+    Route::get('/', 'ProductController@index')->name('products');
+    Route::get('/product/{id}', 'ProductController@view')->name('products.view');
 
 });
