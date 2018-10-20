@@ -10,14 +10,6 @@ use App\Data\Models\ProductRankmoji;
  */
 class ProductRankmojiRepository extends Repository
 {
-    const EMOJEES = [
-        'angry' => 1,
-        'sad' => 2,
-        'neutral' => 3,
-        'happy' => 4,
-        'surprised' => 5,
-    ];
-
     /**
      * @return string
      */
@@ -38,32 +30,24 @@ class ProductRankmojiRepository extends Repository
         asort($rankValues);
         reset($rankValues);
         $key = key($rankValues);
-        $attributes['overall_emoji'] = self::getEmojeeWeight($key);
+        $attributes['overall_emoji'] = ProductRankmoji::getEmojeeWeight($key);
         foreach ($rankValues as $key => $value) {
-            $rankValues[$key] = $rankValues[$key] * self::getEmojeeWeight($key);
+            $rankValues[$key] = $rankValues[$key] * ProductRankmoji::getEmojeeWeight($key);
         }
         $attributes['overall_rank'] = array_sum($rankValues);
         parent::fillAndSave($attributes);
     }
 
     /**
-     * @param string $key
-     * @return int
+     *
+     * @param int $productId
+     * @return Collection
      */
-    public static function getEmojeeWeight(string $key)
+    public function getOveralCountByProduct($productId)
     {
-        return isset(self::EMOJEES[$key]) ? self::EMOJEES[$key] : null;
-    }
-
-    /**
-     * @param int $weight
-     * @return string
-     */
-    public static function getEmojeeValue(int $weight)
-    {
-        $data = self::EMOJEES;
-        array_flip($data);
-        return isset($data[$weight]) ? $data[$weight] : null;
+        return $this->model->selectRaw('overall_emoji, COUNT(id) as count')
+            ->where('prpoduct_id', $productI)
+            ->groupBy('ovarall_emoji');
     }
 
 }
