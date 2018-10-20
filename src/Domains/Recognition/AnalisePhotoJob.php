@@ -53,7 +53,7 @@ class AnalisePhotoJob extends Job
             ]
         ]);
 
-        $response = json_decode($res->getBody()->getContents());
+        $response = json_decode($res->getBody()->getContents(), true);
 
         if (! isset($response[0])) {
             return false;
