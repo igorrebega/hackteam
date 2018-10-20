@@ -11,6 +11,10 @@
 |
 */
 
+Route::get('/product/view', 'ProductController@view');
+Route::post('/product/vote/{id}', 'ProductController@vote');
+
+
 Route::group(['prefix' => 'website'], function() {
 
     // The controllers live in src/Services/Website/Http/Controllers
