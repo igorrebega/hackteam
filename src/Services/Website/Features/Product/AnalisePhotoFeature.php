@@ -37,9 +37,8 @@ class AnalisePhotoFeature extends Feature
         ));
 
         if (! $emotionData) {
-            new RespondWithJsonJob(['status' => false]);
+            return $this->run(new RespondWithJsonJob(['status' => false]));
         }
-
         $this->run(new CreateRankmojiJob(
             $this->productId,
             $emotionData['anger'],
