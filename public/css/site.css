@@ -5,6 +5,11 @@
 canvas {
     display: none;
 }
+
+.modal-dialog {
+    max-width: 530px;
+}
+
 .animationload {
     background-color: #fff;
     height: 50%;
