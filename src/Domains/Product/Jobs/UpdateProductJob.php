@@ -27,7 +27,7 @@ class UpdateProductJob extends Job
     /**
      * UpdateProductJob constructor.
      * @param UpdateProductRequest $request
-     * @param int $productId
+     * @param int                  $productId
      */
     public function __construct(UpdateProductRequest $request, int $productId)
     {
@@ -43,28 +43,19 @@ class UpdateProductJob extends Job
     {
         $attributes = $this->request->only(['title', 'description', 'price']);
 
-        \DB::beginTransaction();
 
-        try {
+        /** @var Product $product */
+        $product = $productRepository->update($this->productId, $attributes);
 
-            /** @var Product $product */
-            $product = $productRepository->update($this->productId, $attributes);
 
-            if ($this->request->hasFile('image') && $product->hasMedia(Product::MEDIA_COLLECTION_IMAGES)) {
+        if ($this->request->hasFile('image')) {
+            if ($product->hasMedia(Product::MEDIA_COLLECTION_IMAGES)) {
                 $product->getFirstMedia(Product::MEDIA_COLLECTION_IMAGES)->delete();
-                $product->addMediaFromRequest('image')->toMediaCollection(Product::MEDIA_COLLECTION_IMAGES);
             }
 
-            \DB::commit();
-
-            return $product;
-
-        } catch (\Exception $e) {
-
-            \DB::rollBack();
-            return false;
-
+            $product->addMediaFromRequest('image')->toMediaCollection(Product::MEDIA_COLLECTION_IMAGES);
         }
 
+        return true;
     }
 }
