@@ -79,3 +79,14 @@ mix.copy('src/Services/Dashboard/resources/assets/images', 'public/assets/dashbo
  * Copy fonts
  */
 mix.copy('node_modules/adminbsb-materialdesign/plugins/bootstrap/fonts', 'public/assets/dashboard/fonts', false);
+
+
+
+/**
+ * Compile assets for 'Website' service
+ */
+
+/**
+ * Compile scss
+ */
+mix.sass('src/Services/Website/resources/assets/scss/custom.scss', 'public/assets/website/css/custom.css');
