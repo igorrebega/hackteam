@@ -30,6 +30,7 @@
                 <p class="card-text text-secondary">
                     {{ $product->description }}
                 </p>
+                <div class="clearfix"></div>
 
 
                 <div class="alert alert-success success-message"
