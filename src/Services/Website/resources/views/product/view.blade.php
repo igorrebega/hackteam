@@ -36,7 +36,7 @@
                     Your emotion was saved
                 </div>
 
-                <div class="alert alert-info non-success-message"
+                <div class="alert alert-info not-success-message"
                      role="alert"
                      style="display: none;margin-top: 15px"
                 >
