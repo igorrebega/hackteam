@@ -24,7 +24,8 @@ class ProductRepository extends Repository
     public function getSortedProducts()
     {
         return $this->model
-            ->select('products.*', \DB::raw('AVG( product_rankmoji.overall_rank ) as rating'))
+            ->select('products.*',
+                \DB::raw('IF(AVG( product_rankmoji.overall_rank ) = 0, 3, AVG( product_rankmoji.overall_rank )) as rating'))
             ->leftJoin('product_rankmoji', 'product_rankmoji.product_id', '=', 'products.id')
             ->groupBy('products.id')
             ->orderBy('rating', 'desc')
