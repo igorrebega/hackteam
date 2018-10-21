@@ -36,24 +36,11 @@ class StoreProductJob extends Job
     {
         $attributes = $this->request->only(['title', 'description', 'price']);
 
-        \DB::beginTransaction();
+        /** @var Product $product */
+        $product = $productRepository->fillAndSave($attributes);
 
-        try {
+        $product->addMediaFromRequest('image')->toMediaCollection(Product::MEDIA_COLLECTION_IMAGES);
 
-            /** @var Product $product */
-            $product = $productRepository->fillAndSave($attributes);
-
-            $product->addMediaFromRequest('image')->toMediaCollection(Product::MEDIA_COLLECTION_IMAGES);
-
-            \DB::commit();
-
-            return $product;
-
-        } catch (\Exception $e) {
-
-            \DB::rollBack();
-            return false;
-
-        }
+        return $product;
     }
 }
