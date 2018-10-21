@@ -4,6 +4,7 @@ namespace App\Services\Website\Features\Product;
 
 use App\Domains\Http\Jobs\RespondWithViewJob;
 use App\Domains\Product\Jobs\FindProductByIdJob;
+use App\Domains\Ranking\Jobs\GetRankingJob;
 use Lucid\Foundation\Feature;
 
 /**
@@ -33,9 +34,12 @@ class ViewProductFeature extends Feature
     public function handle()
     {
         $product = $this->run(new FindProductByIdJob($this->productId));
+        $emojies = $this->run(new GetRankingJob($this->productId));
+
 
         return $this->run(new RespondWithViewJob('website::product.view', [
-            'product' => $product
+            'product' => $product,
+            'emojies' => $emojies
         ]));
     }
 }

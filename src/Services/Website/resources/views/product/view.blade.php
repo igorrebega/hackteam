@@ -28,26 +28,89 @@
                     {{ $product->description }}
                 </p>
 
-                <div class="contentarea">
-                    <div class="camera">
-                        <video id="video">Video stream not available.</video>
-                        <button id="startbutton">Take photo</button>
-                    </div>
-                    <canvas id="canvas">
-                    </canvas>
-                    <div class="output">
-                        <img id="photo" alt="The screen capture will appear in this box.">
+
+                <div class="alert alert-success success-message"
+                     role="alert"
+                     style="display: none;margin-top: 15px"
+                >
+                    Your emotion was saved
+                </div>
+
+                <div class="loader" style="display: none">
+                    <div class="alert alert-info success-message"
+                         role="alert"
+                         style="margin-top: 15px"
+                    >
+                        Saving...
                     </div>
                 </div>
-            </div>
-        </div>
 
-    </div>
+                <table class="table table-bordered">
+                    <tr>
+                        <td>
+                            <img src="/smile/surprise.png">
+                        </td>
+                        <td>
+                            <img src="/smile/smile.png">
+                        </td>
+                        <td>
+                            <img src="/smile/neutral.png">
+                        </td>
+                        <td>
+                            <img src="/smile/sad.png">
+                        </td>
+                        <td>
+                            <img src="/smile/angry.png">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="emo surprised"><?= $emojies['surprised'] ?></td>
+                        <td class="emo happy"><?= $emojies['happy'] ?></td>
+                        <td class="emo neutral"><?= $emojies['neutral'] ?></td>
+                        <td class="emo sad"><?= $emojies['sad'] ?></td>
+                        <td class="emo angry"><?= $emojies['angry'] ?></td>
+                    </tr>
+                </table>
+
+                <button class="btn btn-success"
+                        data-toggle="modal" data-target="#exampleModal"
+                >Rate
+                </button>
+
+                <div class="modal" tabindex="-1" role="dialog" id="exampleModal">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Rate product</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="contentarea">
+                                    <div class="camera">
+                                        <video id="video">Video stream not available.</video>
+                                    </div>
+                                    <canvas id="canvas">
+                                    </canvas>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary" id="startbutton">
+                                    Rate
+                                </button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                    Close
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
 
     <script>
         window.productId = 1;
     </script>
-
-    <script src="/js/site.js" type="text/javascript"></script>
-
 @endsection

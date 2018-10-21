@@ -42,7 +42,7 @@ class AnalisePhotoJob extends Job
                 'returnFaceAttributes' => 'emotion'
             ],
             'json'    => [
-                'url' => env('APP_URL')  . $this->photo
+                'url' => 'http://techbeat.com/wp-content/uploads/2013/06/o-GOOGLE-FACIAL-RECOGNITION-facebook-1024x767.jpg'
             ],
             'headers' => [
                 // Request headers
