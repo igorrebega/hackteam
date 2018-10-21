@@ -25,7 +25,7 @@ class ProductRepository extends Repository
     {
         return $this->model
             ->select('products.*',
-                \DB::raw('IF(AVG( product_rankmoji.overall_rank ) = 0, AVG( product_rankmoji.overall_rank ), 3) as rating'))
+                \DB::raw('IF(AVG( product_rankmoji.overall_rank ) = 0, 3, AVG( product_rankmoji.overall_rank )) as rating'))
             ->leftJoin('product_rankmoji', 'product_rankmoji.product_id', '=', 'products.id')
             ->groupBy('products.id')
             ->orderBy('rating', 'desc')
