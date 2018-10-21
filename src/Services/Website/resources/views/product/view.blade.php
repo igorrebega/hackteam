@@ -122,6 +122,6 @@
             </div>
 
     <script>
-        window.productId = 1;
+        window.productId = '{{$product->id}}';
     </script>
 @endsection

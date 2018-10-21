@@ -124,10 +124,6 @@
     // Set up our event listener to run the startup process
     // once loading is complete.
 
-    if(window.productId){
-        window.addEventListener('load', startup, false);
-    }
-
     function updateEmojies(data) {
         $.each(data, function (key, value) {
             $('.emo.' + key).html(value);
