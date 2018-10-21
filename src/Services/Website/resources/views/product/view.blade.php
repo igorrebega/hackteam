@@ -82,7 +82,7 @@
                     </tr>
                 </table>
 
-                <button class="btn btn-success btn-rate"
+                <button class="btn btn-info btn-rate"
                         data-toggle="modal" data-target="#exampleModal"
                 >Rate
                 </button>
