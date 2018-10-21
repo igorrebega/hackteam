@@ -8,9 +8,11 @@
 
             <div class="col-md-12">
                 <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item active" aria-current="page"><a
-                                    href="{{ route('website.products') }}">All products</a> / {{ $product->title }}</li>
+                    <ol class="breadcrumb bg-info font-weight-bold">
+                        <li class="breadcrumb-item text-light"><a class="text-light"
+                                                                  href="{{ route('website.products') }}">ALL
+                                PRODUCTS</a></li>
+                        <li class="breadcrumb-item text-light active" aria-current="page">{{ $product->title }}</li>
                     </ol>
                 </nav>
             </div>
@@ -21,10 +23,11 @@
 
     <div class="container">
 
-        <div class="card">
-            <img class="card-img-top" src="{{ $product->getImageUrl() }}" alt="Card image cap">
+        <div class="card border-0">
             <div class="card-body">
-                <p class="card-text">
+                <img class="card-img w-25 float-left" src="{{ $product->getImageUrl() }}"
+                     alt="{{ $product->title }}">
+                <p class="card-text text-secondary">
                     {{ $product->description }}
                 </p>
 
@@ -79,7 +82,7 @@
                     </tr>
                 </table>
 
-                <button class="btn btn-success btn-rate"
+                <button class="btn btn-info btn-rate"
                         data-toggle="modal" data-target="#exampleModal"
                 >Rate
                 </button>
