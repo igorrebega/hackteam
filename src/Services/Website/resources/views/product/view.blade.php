@@ -48,7 +48,7 @@
                 </div>
 
                 <div class="loader" style="display: none">
-                    <div class="alert alert-info success-message"
+                    <div class="alert alert-info"
                          role="alert"
                          style="margin-top: 15px"
                     >
