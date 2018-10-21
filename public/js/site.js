@@ -134,8 +134,13 @@
         })
     }
 
+    var runned = false;
+
     $('.btn-rate').click(function () {
-        $('.contentarea').toggle();
+        if (!runned) {
+            startup();
+            runned = true;
+        }
     });
 
 })();
