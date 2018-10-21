@@ -100,14 +100,19 @@
                     imgName: "webcam.png"
                 }
             }).done(function (o) {
+                if (o.data.status == undefined) {
+                    $('.success-message').show();
+                    setTimeout(function () {
+                        $('.success-message').hide();
+                    }, 2000);
+                    updateEmojies(o.data);
+                } else {
+                    $('.not-success-message').show();
+                    setTimeout(function () {
+                        $('.not-success-message').hide();
+                    }, 2000);
+                }
                 $('.loader').hide();
-
-
-                $('.success-message').show();
-                setTimeout(function () {
-                    $('.success-message').hide();
-                }, 2000);
-                updateEmojies(o.data);
 
                 console.log('saved');
             }).fail(function () {

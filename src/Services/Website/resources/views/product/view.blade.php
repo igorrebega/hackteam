@@ -36,6 +36,13 @@
                     Your emotion was saved
                 </div>
 
+                <div class="alert alert-info non-success-message"
+                     role="alert"
+                     style="display: none;margin-top: 15px"
+                >
+                    Can`t recognize your emotion, maybe try one more time?
+                </div>
+
                 <div class="loader" style="display: none">
                     <div class="alert alert-info success-message"
                          role="alert"
